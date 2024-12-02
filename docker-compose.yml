@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # 本地端口映射到容器端口
+    volumes:
+      - .:/usr/src/app # 將本地項目目錄掛載到容器中
+      - /usr/src/app/node_modules # 確保 node_modules 不受本地影響
+    environment:
+      NODE_ENV: development
+    command: ["npm", "run", "start:dev"]
